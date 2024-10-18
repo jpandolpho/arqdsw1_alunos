@@ -21,6 +21,31 @@ public class CadastroServlet extends HttpServlet {
 	}
 	
 	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html");
+		try(var out = response.getWriter()){
+			out.println("<!DOCTYPE html>");
+			out.println("<html lang='pt-br'>");
+			out.println("<head>");
+			out.println("<meta charset=\"UTF-8\">");
+			out.println("<link href=\"css/style.css\" rel=\"stylesheet\">");
+			out.println("<title>Alunos Cadastrados</title>");
+			out.println("</head>");
+			out.println("<body>");
+			out.println("<div class='container'>");
+			out.println("<ul>");
+			for(var aluno : alunos) {
+				out.println("<li>"+aluno+"</li>");
+			}
+			out.println("</ul>");
+			out.println("<a href=\"input.html\">Voltar</a>");
+			out.println("</div>");
+			out.println("</body>");
+			out.println("</html>");
+		}
+	}
+	
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String str = request.getParameter("text_dados");
 		String mensagem;
